@@ -1,0 +1,451 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .bb-page {
+    background: linear-gradient(160deg, #fff0f5 0%, #ffe4f0 40%, #ffd6e8 100%);
+    min-height: 100vh;
+    font-family: 'Quicksand', sans-serif;
+    color: #5a1e3a;
+    padding: 0 0 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bb-page::before {
+    content: '🌸🌷🌸🌷🌸🌷🌸🌷🌸🌷🌸🌷🌸🌷🌸🌷🌸🌷🌸🌷🌸🌷🌸🌷';
+    display: block;
+    font-size: 14px;
+    background: #ff69b4;
+    text-align: center;
+    padding: 8px;
+    letter-spacing: 4px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .hero {
+    text-align: center;
+    padding: 40px 20px 30px;
+    position: relative;
+  }
+
+  .hero-crown { font-size: 50px; margin-bottom: 8px; animation: bounce 2s infinite; }
+  @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+  .hero-name {
+    font-family: 'Pacifico', cursive;
+    font-size: 42px;
+    color: #e91e8c;
+    text-shadow: 3px 3px 0 #ffb6d9, 6px 6px 0 rgba(233,30,140,0.15);
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+
+  .hero-tagline {
+    font-size: 16px;
+    color: #c2407a;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  .sparkle-row { font-size: 24px; margin: 12px 0; letter-spacing: 8px; }
+
+  .photo-hero {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 6px solid #ff69b4;
+    outline: 4px solid #ffb6d9;
+    outline-offset: 3px;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #ffb6d9, #ff69b4);
+    font-size: 60px;
+    box-shadow: 0 8px 30px rgba(233,30,140,0.3);
+    overflow: hidden;
+  }
+
+  .section-label {
+    font-family: 'Pacifico', cursive;
+    font-size: 22px;
+    color: #e91e8c;
+    text-align: center;
+    margin: 32px 0 16px;
+    position: relative;
+  }
+  .section-label::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #ff69b4, #ffb6d9);
+    border-radius: 2px;
+    margin: 8px auto 0;
+  }
+
+  .cards-row {
+    display: flex;
+    gap: 12px;
+    padding: 0 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .card {
+    background: rgba(255,255,255,0.85);
+    border-radius: 20px;
+    border: 2px solid #ffb6d9;
+    padding: 16px 14px;
+    flex: 1 1 140px;
+    max-width: 160px;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(233,30,140,0.12);
+    transition: transform 0.2s;
+  }
+  .card:hover { transform: translateY(-4px); }
+
+  .card-icon { font-size: 32px; margin-bottom: 8px; }
+  .card-label { font-size: 11px; color: #c2407a; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .card-value { font-size: 15px; font-weight: 700; color: #5a1e3a; }
+
+  .love-list {
+    margin: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .love-item {
+    background: rgba(255,255,255,0.85);
+    border-radius: 16px;
+    border: 2px solid #ffb6d9;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 3px 12px rgba(233,30,140,0.1);
+  }
+
+  .love-emoji { font-size: 28px; flex-shrink: 0; }
+  .love-text { font-size: 15px; font-weight: 600; color: #5a1e3a; }
+  .love-sub { font-size: 12px; color: #c2407a; margin-top: 2px; }
+
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 0 16px;
+  }
+
+  .photo-slot {
+    aspect-ratio: 1;
+    border-radius: 16px;
+    border: 2px dashed #ffb6d9;
+    background: rgba(255,255,255,0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 11px;
+    color: #c2407a;
+    font-weight: 600;
+  }
+  .photo-slot .ps-icon { font-size: 26px; }
+
+  .memory-strip {
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .memory-card {
+    background: rgba(255,255,255,0.85);
+    border-radius: 20px;
+    border: 2px solid #ffb6d9;
+    padding: 16px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    box-shadow: 0 3px 12px rgba(233,30,140,0.1);
+  }
+
+  .memory-icon { font-size: 36px; flex-shrink: 0; }
+  .memory-title { font-size: 15px; font-weight: 700; color: #e91e8c; }
+  .memory-date { font-size: 12px; color: #c2407a; margin: 2px 0 6px; }
+  .memory-desc { font-size: 13px; color: #7a3358; line-height: 1.5; }
+
+  .likes-dislikes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 0 16px;
+  }
+
+  .ld-col {
+    background: rgba(255,255,255,0.85);
+    border-radius: 20px;
+    border: 2px solid #ffb6d9;
+    padding: 14px 12px;
+  }
+
+  .ld-header { font-size: 14px; font-weight: 700; text-align: center; margin-bottom: 10px; }
+  .ld-item { font-size: 13px; padding: 5px 0; border-bottom: 1px solid #ffe0ef; display: flex; align-items: center; gap: 6px; }
+  .ld-item:last-child { border-bottom: none; }
+
+  .feels-row {
+    display: flex;
+    gap: 10px;
+    padding: 0 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .feels-pill {
+    background: rgba(255,255,255,0.85);
+    border: 2px solid #ffb6d9;
+    border-radius: 50px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #e91e8c;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .love-letter {
+    margin: 0 16px;
+    background: rgba(255,255,255,0.85);
+    border-radius: 20px;
+    border: 2px solid #ffb6d9;
+    padding: 24px 20px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(233,30,140,0.15);
+    position: relative;
+  }
+
+  .ll-quote {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #7a3358;
+    font-style: italic;
+  }
+
+  .ll-sig {
+    margin-top: 16px;
+    font-family: 'Pacifico', cursive;
+    font-size: 18px;
+    color: #e91e8c;
+  }
+
+  .bottom-bar {
+    text-align: center;
+    padding: 30px 20px 10px;
+    font-size: 22px;
+    letter-spacing: 6px;
+  }
+
+  .add-prompt {
+    margin: 20px 16px 0;
+    background: rgba(255,105,180,0.12);
+    border: 2px dashed #ff69b4;
+    border-radius: 16px;
+    padding: 14px;
+    text-align: center;
+    font-size: 13px;
+    color: #c2407a;
+    font-weight: 600;
+  }
+
+  .section-subtitle {
+    text-align: center;
+    font-size: 12px;
+    color: #c2407a;
+    margin: -10px 0 12px;
+    font-weight: 600;
+  }
+</style>
+
+<div class="bb-page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-crown">👑</div>
+    <div class="hero-name">Your Name Here ✨</div>
+    <div class="sparkle-row">💖 💕 💗</div>
+    <div class="photo-hero">📸</div>
+    <div class="hero-tagline">Est. [Your Date Together] 🎀</div>
+  </div>
+
+  <!-- ABOUT HER -->
+  <div class="section-label">All About Her 🌸</div>
+  <div class="cards-row">
+    <div class="card">
+      <div class="card-icon">🎂</div>
+      <div class="card-label">Birthday</div>
+      <div class="card-value">Month DD<br><span style="font-size:12px;color:#c2407a;">YYYY · City</span></div>
+    </div>
+    <div class="card">
+      <div class="card-icon">⏰</div>
+      <div class="card-label">Born at</div>
+      <div class="card-value">HH:MM AM/PM</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">📍</div>
+      <div class="card-label">From</div>
+      <div class="card-value">Her City ✈️</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">⭐</div>
+      <div class="card-label">Star Sign</div>
+      <div class="card-value">Aries ♈</div>
+    </div>
+  </div>
+
+  <!-- FAVE THINGS -->
+  <div class="section-label">Her Favourite Things 💕</div>
+  <div class="section-subtitle">tap a card to edit later</div>
+  <div class="love-list">
+    <div class="love-item">
+      <div class="love-emoji">🍕</div>
+      <div><div class="love-text">Fave Food</div><div class="love-sub">Add her fave dish here</div></div>
+    </div>
+    <div class="love-item">
+      <div class="love-emoji">☕</div>
+      <div><div class="love-text">Fave Drink</div><div class="love-sub">Her go-to order</div></div>
+    </div>
+    <div class="love-item">
+      <div class="love-emoji">🎵</div>
+      <div><div class="love-text">Fave Song</div><div class="love-sub">The one she always replays</div></div>
+    </div>
+    <div class="love-item">
+      <div class="love-emoji">🎬</div>
+      <div><div class="love-text">Fave Movie</div><div class="love-sub">Could watch it forever</div></div>
+    </div>
+    <div class="love-item">
+      <div class="love-emoji">💆‍♀️</div>
+      <div><div class="love-text">Happy Place</div><div class="love-sub">Where she feels most herself</div></div>
+    </div>
+  </div>
+
+  <!-- LIKES & DISLIKES -->
+  <div class="section-label">Love & Hate 💞</div>
+  <div class="likes-dislikes">
+    <div class="ld-col">
+      <div class="ld-header">She Loves 💗</div>
+      <div class="ld-item">✨ Add a like</div>
+      <div class="ld-item">🌸 Another thing</div>
+      <div class="ld-item">🎀 Something cute</div>
+      <div class="ld-item">💅 Her thing</div>
+    </div>
+    <div class="ld-col">
+      <div class="ld-header">Can't Stand 🙅‍♀️</div>
+      <div class="ld-item">😤 A dislike</div>
+      <div class="ld-item">🚫 Another one</div>
+      <div class="ld-item">😒 Big nope</div>
+      <div class="ld-item">💔 Hard pass</div>
+    </div>
+  </div>
+
+  <!-- THINGS THAT MAKE HER SMILE / CRY -->
+  <div class="section-label">Makes Her 😊 Happy</div>
+  <div class="feels-row">
+    <div class="feels-pill">😂 Add a thing</div>
+    <div class="feels-pill">🌸 Something sweet</div>
+    <div class="feels-pill">💌 Notes from you</div>
+    <div class="feels-pill">🐾 Add more</div>
+    <div class="feels-pill">✨ Surprises</div>
+  </div>
+
+  <div class="section-label" style="margin-top:28px;">Makes Her 🥺 Emotional</div>
+  <div class="feels-row">
+    <div class="feels-pill" style="border-color:#c8a0b8;">😢 Add a trigger</div>
+    <div class="feels-pill" style="border-color:#c8a0b8;">💔 Something sad</div>
+    <div class="feels-pill" style="border-color:#c8a0b8;">🎞️ Old movies</div>
+  </div>
+
+  <!-- PHOTO MEMORIES -->
+  <div class="section-label">Our Memories 📸</div>
+  <div class="section-subtitle">add your photos here 🎀</div>
+  <div class="photo-grid">
+    <div class="photo-slot"><div class="ps-icon">📷</div><div>First Date</div></div>
+    <div class="photo-slot"><div class="ps-icon">🌅</div><div>Sunrise 🌅</div></div>
+    <div class="photo-slot"><div class="ps-icon">✈️</div><div>Our Trip</div></div>
+    <div class="photo-slot"><div class="ps-icon">🎂</div><div>Birthday</div></div>
+    <div class="photo-slot"><div class="ps-icon">😂</div><div>Being Silly</div></div>
+    <div class="photo-slot"><div class="ps-icon">💕</div><div>Us</div></div>
+  </div>
+
+  <!-- MEMORY TIMELINE -->
+  <div class="section-label">Memory Lane 🛤️</div>
+  <div class="memory-strip">
+    <div class="memory-card">
+      <div class="memory-icon">💘</div>
+      <div>
+        <div class="memory-title">The Day We Met</div>
+        <div class="memory-date">📅 Date · 📍 Place</div>
+        <div class="memory-desc">Write what happened that day. What you felt. What she was wearing. Every little detail.</div>
+      </div>
+    </div>
+    <div class="memory-card">
+      <div class="memory-icon">🌙</div>
+      <div>
+        <div class="memory-title">Our First [Moment]</div>
+        <div class="memory-date">📅 Date · 📍 Place</div>
+        <div class="memory-desc">Describe the memory here. Add as many of these cards as you want over time!</div>
+      </div>
+    </div>
+    <div class="memory-card">
+      <div class="memory-icon">✈️</div>
+      <div>
+        <div class="memory-title">Add a Trip Together</div>
+        <div class="memory-date">📅 Date · 📍 Place</div>
+        <div class="memory-desc">Where did you go? What did you see? What made her laugh?</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHILDHOOD SECTION -->
+  <div class="section-label">Little Her 👧🏻</div>
+  <div class="section-subtitle">childhood & growing up 🌷</div>
+  <div class="photo-grid">
+    <div class="photo-slot"><div class="ps-icon">👶</div><div>Baby pic</div></div>
+    <div class="photo-slot"><div class="ps-icon">🎠</div><div>Childhood</div></div>
+    <div class="photo-slot"><div class="ps-icon">🎒</div><div>School days</div></div>
+  </div>
+  <div class="add-prompt" style="margin-top:12px;">➕ Add her childhood facts, favourite toys, funny stories her family told you...</div>
+
+  <!-- REASONS I LOVE YOU -->
+  <div class="section-label">Why I Love You 💌</div>
+  <div class="love-list">
+    <div class="love-item"><div class="love-emoji">😍</div><div><div class="love-text">Reason one</div><div class="love-sub">Be specific and make it yours</div></div></div>
+    <div class="love-item"><div class="love-emoji">🤣</div><div><div class="love-text">The way you laugh</div><div class="love-sub">Describe it here</div></div></div>
+    <div class="love-item"><div class="love-emoji">🧠</div><div><div class="love-text">How smart you are</div><div class="love-sub">Add your own reason</div></div></div>
+    <div class="love-item"><div class="love-emoji">💪</div><div><div class="love-text">Your strength</div><div class="love-sub">Fill this in for her</div></div></div>
+    <div class="love-item"><div class="love-emoji">✨</div><div><div class="love-text">Add more over time...</div><div class="love-sub">This list should never end 💕</div></div></div>
+  </div>
+
+  <!-- LOVE LETTER -->
+  <div class="section-label">A Note From Me 💌</div>
+  <div class="love-letter">
+    <div style="font-size:36px;margin-bottom:12px;">💌</div>
+    <div class="ll-quote">
+      "Write something here that she can read every time she taps the card. Something real, something that makes her feel exactly how you feel about her. You can update this any time. Make her smile. Make her cry a little. You know her best." 🥹
+    </div>
+    <div class="ll-sig">Always yours, [Your Name] 💖</div>
+  </div>
+
+  <!-- ADD MORE PROMPT -->
+  <div class="add-prompt" style="margin-top:24px;">
+    🎀 This page grows with your love story — keep adding memories, photos, reasons and little details over time ✨
+  </div>
+
+  <div class="bottom-bar">💗 💕 💖 💓 💗</div>
+</div>
