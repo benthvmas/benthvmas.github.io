@@ -1,451 +1,802 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💖 My Everything 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600;700&display=swap');
+  /* ============================================================
+     ✏️  HOW TO CUSTOMISE THIS PAGE
+     ============================================================
+     Search for "✏️ EDIT" comments throughout this file.
+     Each one tells you exactly what to change.
+     You can open this file in any text editor (even Notepad).
+     ============================================================ */
+
+  :root {
+    --pink:       #e91e8c;
+    --pink-light: #ff69b4;
+    --pink-pale:  #ffb6d9;
+    --pink-bg:    #fff0f5;
+    --pink-bg2:   #ffe4f0;
+    --text-dark:  #5a1e3a;
+    --text-mid:   #c2407a;
+    --text-soft:  #7a3358;
+    --white-card: rgba(255,255,255,0.88);
+    --border:     #ffb6d9;
+  }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  .bb-page {
-    background: linear-gradient(160deg, #fff0f5 0%, #ffe4f0 40%, #ffd6e8 100%);
+  body {
+    background: linear-gradient(160deg, var(--pink-bg) 0%, var(--pink-bg2) 50%, #ffd6e8 100%);
     min-height: 100vh;
     font-family: 'Quicksand', sans-serif;
-    color: #5a1e3a;
-    padding: 0 0 60px;
-    position: relative;
-    overflow: hidden;
+    color: var(--text-dark);
+    padding-bottom: 80px;
+    overflow-x: hidden;
   }
 
-  .bb-page::before {
-    content: '🌸🌷🌸🌷🌸🌷🌸🌷🌸🌷🌸🌷🌸🌷🌸🌷🌸🌷🌸🌷🌸🌷🌸🌷';
-    display: block;
-    font-size: 14px;
-    background: #ff69b4;
-    text-align: center;
-    padding: 8px;
-    letter-spacing: 4px;
+  /* ── TICKER ── */
+  .ticker {
+    background: var(--pink-light);
+    padding: 9px 0;
     overflow: hidden;
     white-space: nowrap;
   }
+  .ticker-inner {
+    display: inline-block;
+    animation: ticker 18s linear infinite;
+    font-size: 15px;
+    letter-spacing: 3px;
+  }
+  @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
+  /* ── HERO ── */
   .hero {
     text-align: center;
-    padding: 40px 20px 30px;
-    position: relative;
+    padding: 44px 20px 32px;
   }
-
-  .hero-crown { font-size: 50px; margin-bottom: 8px; animation: bounce 2s infinite; }
-  @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+  .crown { font-size: 52px; animation: bounce 2.2s ease-in-out infinite; display: block; }
+  @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
 
   .hero-name {
     font-family: 'Pacifico', cursive;
-    font-size: 42px;
-    color: #e91e8c;
-    text-shadow: 3px 3px 0 #ffb6d9, 6px 6px 0 rgba(233,30,140,0.15);
-    margin-bottom: 10px;
+    font-size: clamp(34px, 10vw, 52px);
+    color: var(--pink);
+    text-shadow: 3px 3px 0 var(--pink-pale), 7px 7px 0 rgba(233,30,140,0.12);
     line-height: 1.2;
+    margin: 10px 0 6px;
   }
 
   .hero-tagline {
-    font-size: 16px;
-    color: #c2407a;
-    font-weight: 600;
+    font-size: 15px;
+    color: var(--text-mid);
+    font-weight: 700;
     letter-spacing: 1px;
   }
 
-  .sparkle-row { font-size: 24px; margin: 12px 0; letter-spacing: 8px; }
+  .sparkles { font-size: 26px; letter-spacing: 10px; margin: 14px 0; }
 
-  .photo-hero {
-    width: 150px;
-    height: 150px;
+  .hero-photo {
+    width: 155px; height: 155px;
     border-radius: 50%;
-    border: 6px solid #ff69b4;
-    outline: 4px solid #ffb6d9;
+    border: 6px solid var(--pink-light);
+    outline: 4px solid var(--pink-pale);
     outline-offset: 3px;
-    margin: 20px auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #ffb6d9, #ff69b4);
-    font-size: 60px;
-    box-shadow: 0 8px 30px rgba(233,30,140,0.3);
+    margin: 18px auto;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, var(--pink-pale), var(--pink-light));
+    font-size: 62px;
+    box-shadow: 0 10px 40px rgba(233,30,140,0.28);
     overflow: hidden;
   }
+  /* ✏️ EDIT: Replace the emoji with an <img> tag pointing to her photo:
+     <div class="hero-photo"><img src="photo.jpg" style="width:100%;height:100%;object-fit:cover;"></div> */
 
-  .section-label {
+  /* ── SECTION HEADINGS ── */
+  .section-title {
     font-family: 'Pacifico', cursive;
-    font-size: 22px;
-    color: #e91e8c;
+    font-size: 23px;
+    color: var(--pink);
     text-align: center;
-    margin: 32px 0 16px;
-    position: relative;
+    margin: 36px 0 6px;
   }
-  .section-label::after {
+  .section-title::after {
     content: '';
     display: block;
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, #ff69b4, #ffb6d9);
-    border-radius: 2px;
+    width: 50px; height: 3px;
+    background: linear-gradient(90deg, var(--pink-light), var(--pink-pale));
+    border-radius: 3px;
     margin: 8px auto 0;
   }
+  .section-sub {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-mid);
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
 
+  /* ── CARDS ROW ── */
   .cards-row {
-    display: flex;
-    gap: 12px;
+    display: flex; gap: 12px;
     padding: 0 16px;
     flex-wrap: wrap;
     justify-content: center;
   }
-
-  .card {
-    background: rgba(255,255,255,0.85);
+  .info-card {
+    background: var(--white-card);
     border-radius: 20px;
-    border: 2px solid #ffb6d9;
+    border: 2px solid var(--border);
     padding: 16px 14px;
-    flex: 1 1 140px;
-    max-width: 160px;
+    flex: 1 1 130px; max-width: 155px;
     text-align: center;
-    box-shadow: 0 4px 16px rgba(233,30,140,0.12);
-    transition: transform 0.2s;
+    box-shadow: 0 4px 18px rgba(233,30,140,0.11);
+    transition: transform .2s;
   }
-  .card:hover { transform: translateY(-4px); }
+  .info-card:hover { transform: translateY(-5px); }
+  .ic-icon { font-size: 32px; margin-bottom: 8px; }
+  .ic-label { font-size: 10px; color: var(--text-mid); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .ic-value { font-size: 14px; font-weight: 700; color: var(--text-dark); }
 
-  .card-icon { font-size: 32px; margin-bottom: 8px; }
-  .card-label { font-size: 11px; color: #c2407a; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-  .card-value { font-size: 15px; font-weight: 700; color: #5a1e3a; }
-
-  .love-list {
-    margin: 0 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
+  /* ── LIST ITEMS ── */
+  .love-list { padding: 0 16px; display: flex; flex-direction: column; gap: 10px; }
   .love-item {
-    background: rgba(255,255,255,0.85);
+    background: var(--white-card);
     border-radius: 16px;
-    border: 2px solid #ffb6d9;
+    border: 2px solid var(--border);
     padding: 14px 18px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    box-shadow: 0 3px 12px rgba(233,30,140,0.1);
+    display: flex; align-items: center; gap: 14px;
+    box-shadow: 0 3px 12px rgba(233,30,140,0.09);
+    transition: transform .2s;
   }
+  .love-item:hover { transform: translateX(4px); }
+  .li-emoji { font-size: 28px; flex-shrink: 0; }
+  .li-title { font-size: 15px; font-weight: 700; }
+  .li-sub { font-size: 12px; color: var(--text-mid); margin-top: 2px; }
 
-  .love-emoji { font-size: 28px; flex-shrink: 0; }
-  .love-text { font-size: 15px; font-weight: 600; color: #5a1e3a; }
-  .love-sub { font-size: 12px; color: #c2407a; margin-top: 2px; }
+  /* ── LIKES / DISLIKES ── */
+  .ld-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 16px; }
+  .ld-col { background: var(--white-card); border-radius: 20px; border: 2px solid var(--border); padding: 14px 12px; }
+  .ld-head { font-size: 14px; font-weight: 700; text-align: center; margin-bottom: 10px; }
+  .ld-item { font-size: 13px; padding: 6px 0; border-bottom: 1px solid #ffe0ef; display: flex; align-items: center; gap: 6px; }
+  .ld-item:last-child { border-bottom: none; }
 
-  .photo-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    padding: 0 16px;
+  /* ── FEELS PILLS ── */
+  .pills { display: flex; gap: 9px; padding: 0 16px; flex-wrap: wrap; justify-content: center; }
+  .pill {
+    background: var(--white-card);
+    border: 2px solid var(--border);
+    border-radius: 50px;
+    padding: 8px 16px;
+    font-size: 13px; font-weight: 700;
+    color: var(--pink);
+    display: flex; align-items: center; gap: 6px;
+    transition: background .2s;
   }
+  .pill:hover { background: var(--pink-pale); }
+  .pill.sad { border-color: #c8a0b8; color: var(--text-mid); }
 
+  /* ── PHOTO GRID ── */
+  .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 0 16px; }
   .photo-slot {
     aspect-ratio: 1;
     border-radius: 16px;
-    border: 2px dashed #ffb6d9;
-    background: rgba(255,255,255,0.7);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    font-size: 11px;
-    color: #c2407a;
-    font-weight: 600;
+    border: 2px dashed var(--pink-pale);
+    background: var(--white-card);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 5px; font-size: 11px; color: var(--text-mid); font-weight: 700;
+    overflow: hidden;
+    transition: border-color .2s;
   }
-  .photo-slot .ps-icon { font-size: 26px; }
+  .photo-slot:hover { border-color: var(--pink-light); }
+  .photo-slot img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; }
+  .ps-icon { font-size: 26px; }
 
-  .memory-strip {
-    padding: 0 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
+  /* ── MEMORY TIMELINE ── */
+  .timeline { padding: 0 16px; display: flex; flex-direction: column; gap: 12px; }
   .memory-card {
-    background: rgba(255,255,255,0.85);
+    background: var(--white-card);
     border-radius: 20px;
-    border: 2px solid #ffb6d9;
+    border: 2px solid var(--border);
     padding: 16px;
-    display: flex;
-    gap: 14px;
-    align-items: flex-start;
-    box-shadow: 0 3px 12px rgba(233,30,140,0.1);
+    display: flex; gap: 14px; align-items: flex-start;
+    box-shadow: 0 3px 14px rgba(233,30,140,0.1);
+    position: relative;
+    overflow: hidden;
   }
-
-  .memory-icon { font-size: 36px; flex-shrink: 0; }
-  .memory-title { font-size: 15px; font-weight: 700; color: #e91e8c; }
-  .memory-date { font-size: 12px; color: #c2407a; margin: 2px 0 6px; }
-  .memory-desc { font-size: 13px; color: #7a3358; line-height: 1.5; }
-
-  .likes-dislikes {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    padding: 0 16px;
+  .memory-card::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 5px;
+    background: linear-gradient(180deg, var(--pink-light), var(--pink-pale));
+    border-radius: 20px 0 0 20px;
   }
+  .mc-icon { font-size: 36px; flex-shrink: 0; }
+  .mc-title { font-size: 15px; font-weight: 700; color: var(--pink); }
+  .mc-date { font-size: 11px; color: var(--text-mid); margin: 2px 0 6px; }
+  .mc-desc { font-size: 13px; color: var(--text-soft); line-height: 1.6; }
 
-  .ld-col {
-    background: rgba(255,255,255,0.85);
-    border-radius: 20px;
-    border: 2px solid #ffb6d9;
-    padding: 14px 12px;
-  }
-
-  .ld-header { font-size: 14px; font-weight: 700; text-align: center; margin-bottom: 10px; }
-  .ld-item { font-size: 13px; padding: 5px 0; border-bottom: 1px solid #ffe0ef; display: flex; align-items: center; gap: 6px; }
-  .ld-item:last-child { border-bottom: none; }
-
-  .feels-row {
-    display: flex;
-    gap: 10px;
-    padding: 0 16px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .feels-pill {
-    background: rgba(255,255,255,0.85);
-    border: 2px solid #ffb6d9;
-    border-radius: 50px;
-    padding: 8px 16px;
-    font-size: 13px;
-    font-weight: 700;
-    color: #e91e8c;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .love-letter {
+  /* ── COUNTDOWN ── */
+  .countdown-wrap {
     margin: 0 16px;
-    background: rgba(255,255,255,0.85);
-    border-radius: 20px;
-    border: 2px solid #ffb6d9;
+    background: linear-gradient(135deg, var(--pink) 0%, #c2185b 100%);
+    border-radius: 24px;
+    padding: 28px 20px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(233,30,140,0.35);
+    position: relative;
+    overflow: hidden;
+  }
+  .countdown-wrap::before {
+    content: '🎂🎀🎊🎂🎀🎊🎂🎀🎊🎂🎀🎊🎂🎀🎊🎂🎀🎊🎂🎀🎊🎂';
+    position: absolute; top: 8px; left: 0; right: 0;
+    font-size: 12px; letter-spacing: 2px; opacity: .4;
+    white-space: nowrap; overflow: hidden;
+  }
+  .cd-label { color: rgba(255,255,255,0.85); font-size: 13px; font-weight: 700; letter-spacing: 1px; margin-bottom: 16px; }
+  .cd-grid { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+  .cd-unit {
+    background: rgba(255,255,255,0.18);
+    border-radius: 16px;
+    padding: 12px 16px;
+    min-width: 68px;
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+  .cd-num { font-family: 'Pacifico', cursive; font-size: 32px; color: #fff; line-height: 1; }
+  .cd-name { font-size: 11px; color: rgba(255,255,255,0.8); font-weight: 700; margin-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
+  .cd-birthday-msg {
+    color: #fff; font-size: 22px; font-weight: 700; padding: 10px 0;
+    display: none;
+  }
+
+  /* ── SPOTIFY ── */
+  .spotify-wrap {
+    margin: 0 16px;
+    background: var(--white-card);
+    border-radius: 24px;
+    border: 2px solid var(--border);
     padding: 24px 20px;
     text-align: center;
-    box-shadow: 0 4px 20px rgba(233,30,140,0.15);
-    position: relative;
+    box-shadow: 0 4px 20px rgba(233,30,140,0.12);
   }
+  .spotify-icon { font-size: 48px; margin-bottom: 12px; }
+  .spotify-title { font-family: 'Pacifico', cursive; font-size: 20px; color: var(--pink); margin-bottom: 8px; }
+  .spotify-sub { font-size: 13px; color: var(--text-soft); margin-bottom: 18px; line-height: 1.5; }
+  .spotify-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: #1DB954;
+    color: #fff;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700; font-size: 15px;
+    padding: 13px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(29,185,84,0.35);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .spotify-btn:hover { transform: scale(1.04); box-shadow: 0 6px 22px rgba(29,185,84,0.45); }
 
-  .ll-quote {
+  /* ── QUIZ ── */
+  .quiz-wrap {
+    margin: 0 16px;
+    background: var(--white-card);
+    border-radius: 24px;
+    border: 2px solid var(--border);
+    padding: 24px 20px;
+    box-shadow: 0 4px 20px rgba(233,30,140,0.12);
+  }
+  .quiz-q-num { font-size: 11px; color: var(--text-mid); font-weight: 700; letter-spacing: 1px; margin-bottom: 8px; }
+  .quiz-q-text { font-size: 17px; font-weight: 700; color: var(--text-dark); margin-bottom: 18px; line-height: 1.4; }
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; }
+  .quiz-opt {
+    background: var(--pink-bg);
+    border: 2px solid var(--pink-pale);
+    border-radius: 14px;
+    padding: 12px 16px;
+    font-size: 14px; font-weight: 600; color: var(--text-dark);
+    cursor: pointer;
+    transition: all .2s;
+    text-align: left;
+  }
+  .quiz-opt:hover { background: var(--pink-pale); border-color: var(--pink-light); }
+  .quiz-opt.correct { background: #e8f5e9; border-color: #66bb6a; color: #2e7d32; }
+  .quiz-opt.wrong   { background: #fce4ec; border-color: #ef9a9a; color: #c62828; }
+  .quiz-opt:disabled { cursor: default; }
+  .quiz-feedback { margin-top: 14px; font-size: 14px; font-weight: 700; text-align: center; min-height: 22px; color: var(--pink); }
+  .quiz-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 18px; }
+  .quiz-btn {
+    background: var(--pink);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 22px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700; font-size: 14px;
+    cursor: pointer;
+    transition: transform .15s, opacity .15s;
+  }
+  .quiz-btn:hover { transform: scale(1.04); }
+  .quiz-btn:disabled { opacity: .35; cursor: default; transform: none; }
+  .quiz-score { font-size: 13px; color: var(--text-mid); font-weight: 700; }
+  .quiz-progress { height: 6px; background: var(--pink-pale); border-radius: 6px; margin-bottom: 20px; overflow: hidden; }
+  .quiz-progress-fill { height: 100%; background: linear-gradient(90deg, var(--pink-light), var(--pink)); border-radius: 6px; transition: width .4s ease; }
+  .quiz-result {
+    text-align: center; padding: 10px 0;
+    display: none;
+  }
+  .quiz-result-emoji { font-size: 56px; display: block; margin-bottom: 10px; }
+  .quiz-result-title { font-family: 'Pacifico', cursive; font-size: 24px; color: var(--pink); margin-bottom: 8px; }
+  .quiz-result-sub { font-size: 14px; color: var(--text-soft); margin-bottom: 18px; line-height: 1.6; }
+  .quiz-restart {
+    background: var(--pink); color: #fff; border: none;
+    border-radius: 50px; padding: 12px 28px;
+    font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 15px;
+    cursor: pointer; transition: transform .15s;
+  }
+  .quiz-restart:hover { transform: scale(1.05); }
+
+  /* ── LOVE LETTER ── */
+  .letter-wrap {
+    margin: 0 16px;
+    background: var(--white-card);
+    border-radius: 24px;
+    border: 2px solid var(--border);
+    padding: 28px 22px;
+    text-align: center;
+    box-shadow: 0 6px 28px rgba(233,30,140,0.14);
+  }
+  .letter-icon { font-size: 40px; margin-bottom: 14px; }
+  .letter-text {
     font-size: 15px;
-    line-height: 1.8;
-    color: #7a3358;
+    color: var(--text-soft);
+    line-height: 1.9;
     font-style: italic;
   }
+  .letter-sig { margin-top: 18px; font-family: 'Pacifico', cursive; font-size: 20px; color: var(--pink); }
 
-  .ll-sig {
-    margin-top: 16px;
-    font-family: 'Pacifico', cursive;
-    font-size: 18px;
-    color: #e91e8c;
-  }
-
-  .bottom-bar {
-    text-align: center;
-    padding: 30px 20px 10px;
-    font-size: 22px;
-    letter-spacing: 6px;
-  }
-
+  /* ── ADD PROMPT ── */
   .add-prompt {
-    margin: 20px 16px 0;
-    background: rgba(255,105,180,0.12);
-    border: 2px dashed #ff69b4;
+    margin: 18px 16px 0;
+    background: rgba(255,105,180,0.1);
+    border: 2px dashed var(--pink-light);
     border-radius: 16px;
     padding: 14px;
     text-align: center;
-    font-size: 13px;
-    color: #c2407a;
-    font-weight: 600;
+    font-size: 13px; color: var(--text-mid); font-weight: 600;
   }
 
-  .section-subtitle {
-    text-align: center;
-    font-size: 12px;
-    color: #c2407a;
-    margin: -10px 0 12px;
-    font-weight: 600;
-  }
+  /* ── FOOTER ── */
+  .footer { text-align: center; padding: 36px 20px 10px; font-size: 24px; letter-spacing: 8px; }
 </style>
+</head>
+<body>
 
-<div class="bb-page">
-
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-crown">👑</div>
-    <div class="hero-name">Your Name Here ✨</div>
-    <div class="sparkle-row">💖 💕 💗</div>
-    <div class="photo-hero">📸</div>
-    <div class="hero-tagline">Est. [Your Date Together] 🎀</div>
-  </div>
-
-  <!-- ABOUT HER -->
-  <div class="section-label">All About Her 🌸</div>
-  <div class="cards-row">
-    <div class="card">
-      <div class="card-icon">🎂</div>
-      <div class="card-label">Birthday</div>
-      <div class="card-value">Month DD<br><span style="font-size:12px;color:#c2407a;">YYYY · City</span></div>
-    </div>
-    <div class="card">
-      <div class="card-icon">⏰</div>
-      <div class="card-label">Born at</div>
-      <div class="card-value">HH:MM AM/PM</div>
-    </div>
-    <div class="card">
-      <div class="card-icon">📍</div>
-      <div class="card-label">From</div>
-      <div class="card-value">Her City ✈️</div>
-    </div>
-    <div class="card">
-      <div class="card-icon">⭐</div>
-      <div class="card-label">Star Sign</div>
-      <div class="card-value">Aries ♈</div>
-    </div>
-  </div>
-
-  <!-- FAVE THINGS -->
-  <div class="section-label">Her Favourite Things 💕</div>
-  <div class="section-subtitle">tap a card to edit later</div>
-  <div class="love-list">
-    <div class="love-item">
-      <div class="love-emoji">🍕</div>
-      <div><div class="love-text">Fave Food</div><div class="love-sub">Add her fave dish here</div></div>
-    </div>
-    <div class="love-item">
-      <div class="love-emoji">☕</div>
-      <div><div class="love-text">Fave Drink</div><div class="love-sub">Her go-to order</div></div>
-    </div>
-    <div class="love-item">
-      <div class="love-emoji">🎵</div>
-      <div><div class="love-text">Fave Song</div><div class="love-sub">The one she always replays</div></div>
-    </div>
-    <div class="love-item">
-      <div class="love-emoji">🎬</div>
-      <div><div class="love-text">Fave Movie</div><div class="love-sub">Could watch it forever</div></div>
-    </div>
-    <div class="love-item">
-      <div class="love-emoji">💆‍♀️</div>
-      <div><div class="love-text">Happy Place</div><div class="love-sub">Where she feels most herself</div></div>
-    </div>
-  </div>
-
-  <!-- LIKES & DISLIKES -->
-  <div class="section-label">Love & Hate 💞</div>
-  <div class="likes-dislikes">
-    <div class="ld-col">
-      <div class="ld-header">She Loves 💗</div>
-      <div class="ld-item">✨ Add a like</div>
-      <div class="ld-item">🌸 Another thing</div>
-      <div class="ld-item">🎀 Something cute</div>
-      <div class="ld-item">💅 Her thing</div>
-    </div>
-    <div class="ld-col">
-      <div class="ld-header">Can't Stand 🙅‍♀️</div>
-      <div class="ld-item">😤 A dislike</div>
-      <div class="ld-item">🚫 Another one</div>
-      <div class="ld-item">😒 Big nope</div>
-      <div class="ld-item">💔 Hard pass</div>
-    </div>
-  </div>
-
-  <!-- THINGS THAT MAKE HER SMILE / CRY -->
-  <div class="section-label">Makes Her 😊 Happy</div>
-  <div class="feels-row">
-    <div class="feels-pill">😂 Add a thing</div>
-    <div class="feels-pill">🌸 Something sweet</div>
-    <div class="feels-pill">💌 Notes from you</div>
-    <div class="feels-pill">🐾 Add more</div>
-    <div class="feels-pill">✨ Surprises</div>
-  </div>
-
-  <div class="section-label" style="margin-top:28px;">Makes Her 🥺 Emotional</div>
-  <div class="feels-row">
-    <div class="feels-pill" style="border-color:#c8a0b8;">😢 Add a trigger</div>
-    <div class="feels-pill" style="border-color:#c8a0b8;">💔 Something sad</div>
-    <div class="feels-pill" style="border-color:#c8a0b8;">🎞️ Old movies</div>
-  </div>
-
-  <!-- PHOTO MEMORIES -->
-  <div class="section-label">Our Memories 📸</div>
-  <div class="section-subtitle">add your photos here 🎀</div>
-  <div class="photo-grid">
-    <div class="photo-slot"><div class="ps-icon">📷</div><div>First Date</div></div>
-    <div class="photo-slot"><div class="ps-icon">🌅</div><div>Sunrise 🌅</div></div>
-    <div class="photo-slot"><div class="ps-icon">✈️</div><div>Our Trip</div></div>
-    <div class="photo-slot"><div class="ps-icon">🎂</div><div>Birthday</div></div>
-    <div class="photo-slot"><div class="ps-icon">😂</div><div>Being Silly</div></div>
-    <div class="photo-slot"><div class="ps-icon">💕</div><div>Us</div></div>
-  </div>
-
-  <!-- MEMORY TIMELINE -->
-  <div class="section-label">Memory Lane 🛤️</div>
-  <div class="memory-strip">
-    <div class="memory-card">
-      <div class="memory-icon">💘</div>
-      <div>
-        <div class="memory-title">The Day We Met</div>
-        <div class="memory-date">📅 Date · 📍 Place</div>
-        <div class="memory-desc">Write what happened that day. What you felt. What she was wearing. Every little detail.</div>
-      </div>
-    </div>
-    <div class="memory-card">
-      <div class="memory-icon">🌙</div>
-      <div>
-        <div class="memory-title">Our First [Moment]</div>
-        <div class="memory-date">📅 Date · 📍 Place</div>
-        <div class="memory-desc">Describe the memory here. Add as many of these cards as you want over time!</div>
-      </div>
-    </div>
-    <div class="memory-card">
-      <div class="memory-icon">✈️</div>
-      <div>
-        <div class="memory-title">Add a Trip Together</div>
-        <div class="memory-date">📅 Date · 📍 Place</div>
-        <div class="memory-desc">Where did you go? What did you see? What made her laugh?</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CHILDHOOD SECTION -->
-  <div class="section-label">Little Her 👧🏻</div>
-  <div class="section-subtitle">childhood & growing up 🌷</div>
-  <div class="photo-grid">
-    <div class="photo-slot"><div class="ps-icon">👶</div><div>Baby pic</div></div>
-    <div class="photo-slot"><div class="ps-icon">🎠</div><div>Childhood</div></div>
-    <div class="photo-slot"><div class="ps-icon">🎒</div><div>School days</div></div>
-  </div>
-  <div class="add-prompt" style="margin-top:12px;">➕ Add her childhood facts, favourite toys, funny stories her family told you...</div>
-
-  <!-- REASONS I LOVE YOU -->
-  <div class="section-label">Why I Love You 💌</div>
-  <div class="love-list">
-    <div class="love-item"><div class="love-emoji">😍</div><div><div class="love-text">Reason one</div><div class="love-sub">Be specific and make it yours</div></div></div>
-    <div class="love-item"><div class="love-emoji">🤣</div><div><div class="love-text">The way you laugh</div><div class="love-sub">Describe it here</div></div></div>
-    <div class="love-item"><div class="love-emoji">🧠</div><div><div class="love-text">How smart you are</div><div class="love-sub">Add your own reason</div></div></div>
-    <div class="love-item"><div class="love-emoji">💪</div><div><div class="love-text">Your strength</div><div class="love-sub">Fill this in for her</div></div></div>
-    <div class="love-item"><div class="love-emoji">✨</div><div><div class="love-text">Add more over time...</div><div class="love-sub">This list should never end 💕</div></div></div>
-  </div>
-
-  <!-- LOVE LETTER -->
-  <div class="section-label">A Note From Me 💌</div>
-  <div class="love-letter">
-    <div style="font-size:36px;margin-bottom:12px;">💌</div>
-    <div class="ll-quote">
-      "Write something here that she can read every time she taps the card. Something real, something that makes her feel exactly how you feel about her. You can update this any time. Make her smile. Make her cry a little. You know her best." 🥹
-    </div>
-    <div class="ll-sig">Always yours, [Your Name] 💖</div>
-  </div>
-
-  <!-- ADD MORE PROMPT -->
-  <div class="add-prompt" style="margin-top:24px;">
-    🎀 This page grows with your love story — keep adding memories, photos, reasons and little details over time ✨
-  </div>
-
-  <div class="bottom-bar">💗 💕 💖 💓 💗</div>
+<!-- ████████  TICKER  ████████ -->
+<div class="ticker">
+  <span class="ticker-inner">
+    🌸 &nbsp; My Favourite Person &nbsp; 💖 &nbsp; My Favourite Person &nbsp; 💗 &nbsp; My Favourite Person &nbsp; 🎀 &nbsp; My Favourite Person &nbsp; 💕 &nbsp; My Favourite Person &nbsp; 🌸 &nbsp; My Favourite Person &nbsp; 💖 &nbsp; My Favourite Person &nbsp; 💗 &nbsp; My Favourite Person &nbsp; 🎀 &nbsp; My Favourite Person &nbsp; 💕 &nbsp; My Favourite Person &nbsp;
+  </span>
 </div>
+
+<!-- ████████  HERO  ████████ -->
+<div class="hero">
+  <span class="crown">👑</span>
+  <!-- ✏️ EDIT: Change the name below -->
+  <div class="hero-name">Your Name Here ✨</div>
+  <div class="sparkles">💖 💕 💗</div>
+
+  <!-- ✏️ EDIT: Replace the 📸 emoji with an <img> tag:
+       <img src="her-photo.jpg" style="width:100%;height:100%;object-fit:cover;"> -->
+  <div class="hero-photo">📸</div>
+
+  <!-- ✏️ EDIT: Change the date you got together -->
+  <div class="hero-tagline">Together since [Month DD, YYYY] 🎀</div>
+</div>
+
+<!-- ████████  ABOUT HER  ████████ -->
+<div class="section-title">All About Her 🌸</div>
+<div class="section-sub">the most important facts 💅</div>
+<div class="cards-row">
+  <!-- ✏️ EDIT each ic-value below -->
+  <div class="info-card"><div class="ic-icon">🎂</div><div class="ic-label">Birthday</div><div class="ic-value">Month DD<br><span style="font-size:11px;color:var(--text-mid);">YYYY</span></div></div>
+  <div class="info-card"><div class="ic-icon">⏰</div><div class="ic-label">Born At</div><div class="ic-value">HH:MM AM</div></div>
+  <div class="info-card"><div class="ic-icon">📍</div><div class="ic-label">From</div><div class="ic-value">Her City 🌍</div></div>
+  <div class="info-card"><div class="ic-icon">⭐</div><div class="ic-label">Star Sign</div><div class="ic-value">Aries ♈</div></div>
+</div>
+
+<!-- ████████  FAVOURITES  ████████ -->
+<div class="section-title">Her Favourites 💕</div>
+<div class="love-list">
+  <!-- ✏️ EDIT each li-title and li-sub below -->
+  <div class="love-item"><div class="li-emoji">🍕</div><div><div class="li-title">Favourite Food</div><div class="li-sub">Add her favourite dish here</div></div></div>
+  <div class="love-item"><div class="li-emoji">☕</div><div><div class="li-title">Favourite Drink</div><div class="li-sub">Her go-to order</div></div></div>
+  <div class="love-item"><div class="li-emoji">🎵</div><div><div class="li-title">Favourite Song</div><div class="li-sub">The one she replays on repeat</div></div></div>
+  <div class="love-item"><div class="li-emoji">🎬</div><div><div class="li-title">Favourite Movie</div><div class="li-sub">Could watch it a thousand times</div></div></div>
+  <div class="love-item"><div class="li-emoji">💆‍♀️</div><div><div class="li-title">Her Happy Place</div><div class="li-sub">Where she feels most herself</div></div></div>
+  <div class="love-item"><div class="li-emoji">💅</div><div><div class="li-title">Favourite Thing To Do</div><div class="li-sub">Her favourite way to spend time</div></div></div>
+</div>
+
+<!-- ████████  LIKES & DISLIKES  ████████ -->
+<div class="section-title">Love & Nope 💞</div>
+<div class="ld-grid">
+  <div class="ld-col">
+    <div class="ld-head">She Loves 💗</div>
+    <!-- ✏️ EDIT: Add her likes -->
+    <div class="ld-item">✨ Add a like</div>
+    <div class="ld-item">🌸 Something she adores</div>
+    <div class="ld-item">🎀 A little obsession</div>
+    <div class="ld-item">💅 Her thing</div>
+    <div class="ld-item">🐾 Another one</div>
+  </div>
+  <div class="ld-col">
+    <div class="ld-head">Can't Stand 🙅‍♀️</div>
+    <!-- ✏️ EDIT: Add her dislikes -->
+    <div class="ld-item">😤 A dislike</div>
+    <div class="ld-item">🚫 Hard no</div>
+    <div class="ld-item">😒 Big nope</div>
+    <div class="ld-item">💔 Absolutely not</div>
+    <div class="ld-item">🙄 Never</div>
+  </div>
+</div>
+
+<!-- ████████  FEELS  ████████ -->
+<div class="section-title">Makes Her 😊 Happy</div>
+<!-- ✏️ EDIT: Add things that make her happy -->
+<div class="pills">
+  <div class="pill">😂 Add a thing</div>
+  <div class="pill">🌸 Something sweet</div>
+  <div class="pill">💌 Notes from you</div>
+  <div class="pill">🐾 Cute animals</div>
+  <div class="pill">✨ Surprises</div>
+  <div class="pill">🍫 Her treat</div>
+</div>
+
+<div class="section-title" style="margin-top:30px;">Makes Her 🥺 Emotional</div>
+<!-- ✏️ EDIT: Add things that make her tear up -->
+<div class="pills">
+  <div class="pill sad">😢 Something sad</div>
+  <div class="pill sad">💔 Old memories</div>
+  <div class="pill sad">🎞️ Movies</div>
+  <div class="pill sad">📞 Missing family</div>
+</div>
+
+<!-- ████████  PHOTO GRID — OUR MEMORIES  ████████ -->
+<div class="section-title">Our Memories 📸</div>
+<div class="section-sub">add photos over time 🎀</div>
+<div class="photo-grid">
+  <!-- ✏️ EDIT: Replace emoji + label with <img src="photo.jpg"> in each slot -->
+  <div class="photo-slot"><div class="ps-icon">💘</div><div>First Date</div></div>
+  <div class="photo-slot"><div class="ps-icon">🌅</div><div>A Sunrise</div></div>
+  <div class="photo-slot"><div class="ps-icon">✈️</div><div>Our Trip</div></div>
+  <div class="photo-slot"><div class="ps-icon">🎂</div><div>Birthday</div></div>
+  <div class="photo-slot"><div class="ps-icon">😂</div><div>Being Silly</div></div>
+  <div class="photo-slot"><div class="ps-icon">🌙</div><div>Late Night</div></div>
+  <div class="photo-slot"><div class="ps-icon">🍕</div><div>Food We Had</div></div>
+  <div class="photo-slot"><div class="ps-icon">🐾</div><div>A Cute Moment</div></div>
+  <div class="photo-slot"><div class="ps-icon">💕</div><div>Just Us</div></div>
+</div>
+
+<!-- ████████  CHILDHOOD  ████████ -->
+<div class="section-title">Little Her 👧🏻</div>
+<div class="section-sub">childhood & growing up 🌷</div>
+<div class="photo-grid">
+  <!-- ✏️ EDIT: Add childhood photos -->
+  <div class="photo-slot"><div class="ps-icon">👶</div><div>Baby Pic</div></div>
+  <div class="photo-slot"><div class="ps-icon">🎠</div><div>Childhood</div></div>
+  <div class="photo-slot"><div class="ps-icon">🎒</div><div>School Days</div></div>
+</div>
+<div class="add-prompt">✏️ Add childhood facts, favourite toys, funny family stories, nicknames she had growing up...</div>
+
+<!-- ████████  MEMORY TIMELINE  ████████ -->
+<div class="section-title">Memory Lane 🛤️</div>
+<div class="timeline">
+  <!-- ✏️ EDIT: Fill in your real memories. Copy this block to add more. -->
+  <div class="memory-card">
+    <div class="mc-icon">💘</div>
+    <div>
+      <div class="mc-title">The Day We Met</div>
+      <div class="mc-date">📅 Date &nbsp;·&nbsp; 📍 Place</div>
+      <div class="mc-desc">Write what happened. What you felt. What she was wearing. Every little detail that you never want to forget.</div>
+    </div>
+  </div>
+  <div class="memory-card">
+    <div class="mc-icon">🌙</div>
+    <div>
+      <div class="mc-title">Our First [Special Moment]</div>
+      <div class="mc-date">📅 Date &nbsp;·&nbsp; 📍 Place</div>
+      <div class="mc-desc">Describe this memory here. Add as many of these as you want over time — every one matters.</div>
+    </div>
+  </div>
+  <div class="memory-card">
+    <div class="mc-icon">✈️</div>
+    <div>
+      <div class="mc-title">Our First Trip Together</div>
+      <div class="mc-date">📅 Date &nbsp;·&nbsp; 📍 Destination</div>
+      <div class="mc-desc">Where did you go? What was the funniest moment? What made her laugh so hard she cried?</div>
+    </div>
+  </div>
+  <!-- ✏️ ADD MORE MEMORIES: Copy the block above and paste it here -->
+</div>
+
+<!-- ████████  BIRTHDAY COUNTDOWN  ████████ -->
+<div class="section-title">Birthday Countdown 🎂</div>
+<div class="section-sub">the most important date of the year 🎀</div>
+<div class="countdown-wrap">
+  <div class="cd-label" id="cd-label">Her next birthday is in...</div>
+  <div class="cd-grid" id="cd-grid">
+    <div class="cd-unit"><div class="cd-num" id="cd-days">—</div><div class="cd-name">Days</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-hours">—</div><div class="cd-name">Hours</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-mins">—</div><div class="cd-name">Mins</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-secs">—</div><div class="cd-name">Secs</div></div>
+  </div>
+  <div class="cd-birthday-msg" id="cd-bday">🎉 HAPPY BIRTHDAY QUEEN 👑🎂💖🎉</div>
+</div>
+
+<!-- ████████  SPOTIFY  ████████ -->
+<div class="section-title">Our Playlist 🎵</div>
+<div class="spotify-wrap">
+  <div class="spotify-icon">🎧</div>
+  <div class="spotify-title">Songs That Are Ours</div>
+  <!-- ✏️ EDIT: Change this description -->
+  <div class="spotify-sub">Every song on this playlist means something. Hit play and let the memories wash over you. 🥹</div>
+  <!-- ✏️ EDIT: Replace # with your actual Spotify playlist link -->
+  <a class="spotify-btn" href="#" target="_blank">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.622.622 0 01-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.622.622 0 11-.277-1.215c3.809-.87 7.077-.496 9.713 1.115a.622.622 0 01.206.857zm1.223-2.722a.78.78 0 01-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.78.78 0 01-.973-.519.781.781 0 01.52-.973c3.632-1.102 8.147-.568 11.233 1.329a.78.78 0 01.257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.937.937 0 11-.543-1.794c3.532-1.072 9.404-.865 13.115 1.338a.936.936 0 01-.955 1.613z"/></svg>
+    Open Playlist on Spotify
+  </a>
+</div>
+
+<!-- ████████  QUIZ  ████████ -->
+<div class="section-title">How Well Does She Know You? 💭</div>
+<div class="section-sub">a little quiz just for her 🎀</div>
+<div class="quiz-wrap">
+  <div id="quiz-body">
+    <div class="quiz-progress"><div class="quiz-progress-fill" id="quiz-prog" style="width:0%"></div></div>
+    <div class="quiz-q-num" id="quiz-qnum">Question 1 of 8</div>
+    <div class="quiz-q-text" id="quiz-qtext">Loading...</div>
+    <div class="quiz-options" id="quiz-opts"></div>
+    <div class="quiz-feedback" id="quiz-fb"></div>
+    <div class="quiz-nav">
+      <div class="quiz-score">Score: <span id="quiz-score">0</span> 💖</div>
+      <button class="quiz-btn" id="quiz-next" disabled>Next →</button>
+    </div>
+  </div>
+  <div class="quiz-result" id="quiz-result">
+    <span class="quiz-result-emoji" id="quiz-res-emoji">🏆</span>
+    <div class="quiz-result-title" id="quiz-res-title">Amazing!</div>
+    <div class="quiz-result-sub" id="quiz-res-sub"></div>
+    <button class="quiz-restart" onclick="startQuiz()">Play Again 🔄</button>
+  </div>
+</div>
+
+<!-- ████████  WHY I LOVE YOU  ████████ -->
+<div class="section-title">Why I Love You 💌</div>
+<div class="love-list">
+  <!-- ✏️ EDIT: Replace these with real reasons — the more specific the better -->
+  <div class="love-item"><div class="li-emoji">😍</div><div><div class="li-title">Reason one</div><div class="li-sub">Be specific — write something only you would know about her</div></div></div>
+  <div class="love-item"><div class="li-emoji">🤣</div><div><div class="li-title">The way you laugh</div><div class="li-sub">Describe it here in your own words</div></div></div>
+  <div class="love-item"><div class="li-emoji">🧠</div><div><div class="li-title">How clever you are</div><div class="li-sub">Add your real reason here</div></div></div>
+  <div class="love-item"><div class="li-emoji">💪</div><div><div class="li-title">Your strength</div><div class="li-sub">What you admire about her</div></div></div>
+  <div class="love-item"><div class="li-emoji">🌙</div><div><div class="li-title">Late night conversations</div><div class="li-sub">The ones that never end</div></div></div>
+  <div class="love-item"><div class="li-emoji">✨</div><div><div class="li-title">Keep adding more over time...</div><div class="li-sub">This list should never end 💕</div></div></div>
+</div>
+
+<!-- ████████  LOVE LETTER  ████████ -->
+<div class="section-title">A Note From Me 💌</div>
+<div class="letter-wrap">
+  <div class="letter-icon">💌</div>
+  <!-- ✏️ EDIT: Write your real letter to her here -->
+  <div class="letter-text">
+    "Write something here that she reads every time she taps the card. Something real and honest. Something that makes her feel exactly how you feel about her every single day. You can update this any time you want. Make her smile. Make her cry a little. You know her better than anyone." 🥹
+  </div>
+  <!-- ✏️ EDIT: Change to your name -->
+  <div class="letter-sig">Always yours, [Your Name] 💖</div>
+</div>
+
+<div class="add-prompt">🎀 This page grows with your love story — keep adding memories, photos, reasons and little details over time ✨</div>
+
+<div class="footer">💗 &nbsp; 💕 &nbsp; 💖 &nbsp; 💓 &nbsp; 💗</div>
+
+
+<!-- ████████  SCRIPTS  ████████ -->
+<script>
+  // ============================================================
+  // ✏️ EDIT: BIRTHDAY COUNTDOWN
+  // Change the month (0=Jan, 1=Feb, ... 11=Dec) and day below
+  // ============================================================
+  const BDAY_MONTH = 5;  // ✏️ 0=Jan, 1=Feb, 2=Mar, 3=Apr, 4=May, 5=Jun, 6=Jul, 7=Aug, 8=Sep, 9=Oct, 10=Nov, 11=Dec
+  const BDAY_DAY   = 15; // ✏️ Day of the month
+
+  function updateCountdown() {
+    const now   = new Date();
+    let   bday  = new Date(now.getFullYear(), BDAY_MONTH, BDAY_DAY);
+    if (bday < now) bday = new Date(now.getFullYear() + 1, BDAY_MONTH, BDAY_DAY);
+
+    const isToday = now.getMonth() === BDAY_MONTH && now.getDate() === BDAY_DAY;
+
+    if (isToday) {
+      document.getElementById('cd-grid').style.display  = 'none';
+      document.getElementById('cd-label').style.display = 'none';
+      document.getElementById('cd-bday').style.display  = 'block';
+      return;
+    }
+
+    const diff   = bday - now;
+    const days   = Math.floor(diff / 86400000);
+    const hours  = Math.floor((diff % 86400000) / 3600000);
+    const mins   = Math.floor((diff % 3600000)  / 60000);
+    const secs   = Math.floor((diff % 60000)    / 1000);
+
+    document.getElementById('cd-days').textContent  = days;
+    document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+    document.getElementById('cd-mins').textContent  = String(mins).padStart(2,'0');
+    document.getElementById('cd-secs').textContent  = String(secs).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+
+  // ============================================================
+  // ✏️ EDIT: QUIZ QUESTIONS
+  // Change the questions, options, and correct answers below.
+  // "correct" = index of the right answer (0, 1, 2, or 3)
+  // "fun" = the fun message shown when she gets it right/wrong
+  // ============================================================
+  const QUIZ = [
+    {
+      q:       "What's my absolute favourite food? 🍕",
+      opts:    ["Pizza 🍕", "Pasta 🍝", "Sushi 🍣", "Burgers 🍔"],
+      correct: 0,
+      fun:     "Yes!! You know me so well 🥹"
+    },
+    {
+      q:       "Where was our very first date? 💘",
+      opts:    ["A restaurant 🍽️", "A park 🌳", "The cinema 🎬", "A café ☕"],
+      correct: 1,
+      fun:     "I still think about that day every single time 💕"
+    },
+    {
+      q:       "What's my go-to drink order? ☕",
+      opts:    ["Iced latte", "Hot chocolate", "Matcha", "Oat flat white"],
+      correct: 3,
+      fun:     "You've been paying attention! 😍"
+    },
+    {
+      q:       "What song always makes me think of you? 🎵",
+      opts:    ["Song A", "Song B", "Song C", "Song D"],
+      correct: 2,
+      fun:     "Every single note. 🎶💕"
+    },
+    {
+      q:       "What's my biggest pet peeve? 😤",
+      opts:    ["Loud chewing", "Slow walkers", "Noisy breathing", "Leaving lights on"],
+      correct: 1,
+      fun:     "EXACTLY. Move out of the way!! 😂"
+    },
+    {
+      q:       "What's my love language? 💞",
+      opts:    ["Words of affirmation 💬", "Acts of service 🛠️", "Physical touch 🤗", "Quality time ⏳"],
+      correct: 0,
+      fun:     "Say the right things and I'm yours forever 🥰"
+    },
+    {
+      q:       "Which of these would be my dream trip? ✈️",
+      opts:    ["Paris 🗼", "Japan 🎌", "Maldives 🏝️", "New York 🗽"],
+      correct: 2,
+      fun:     "Turquoise water, no WiFi, just us 🏝️💕"
+    },
+    {
+      q:       "What am I most likely doing at 11pm? 🌙",
+      opts:    ["Scrolling my phone 📱", "Already asleep 😴", "Watching something 🎬", "Thinking about food 🍕"],
+      correct: 3,
+      fun:     "Always. Without fail. Every single night. 😂🍕"
+    }
+  ];
+
+  let qIndex = 0;
+  let score  = 0;
+  let answered = false;
+
+  function startQuiz() {
+    qIndex   = 0;
+    score    = 0;
+    answered = false;
+    document.getElementById('quiz-result').style.display = 'none';
+    document.getElementById('quiz-body').style.display   = 'block';
+    document.getElementById('quiz-score').textContent    = '0';
+    renderQuestion();
+  }
+
+  function renderQuestion() {
+    const q    = QUIZ[qIndex];
+    const pct  = (qIndex / QUIZ.length) * 100;
+
+    document.getElementById('quiz-prog').style.width  = pct + '%';
+    document.getElementById('quiz-qnum').textContent  = `Question ${qIndex + 1} of ${QUIZ.length}`;
+    document.getElementById('quiz-qtext').textContent = q.q;
+    document.getElementById('quiz-fb').textContent    = '';
+    document.getElementById('quiz-next').disabled     = true;
+    answered = false;
+
+    const opts = document.getElementById('quiz-opts');
+    opts.innerHTML = '';
+    q.opts.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.className   = 'quiz-opt';
+      btn.textContent = opt;
+      btn.onclick     = () => handleAnswer(i);
+      opts.appendChild(btn);
+    });
+  }
+
+  function handleAnswer(chosen) {
+    if (answered) return;
+    answered = true;
+
+    const q    = QUIZ[qIndex];
+    const btns = document.querySelectorAll('.quiz-opt');
+
+    btns.forEach((b, i) => {
+      b.disabled = true;
+      if (i === q.correct) b.classList.add('correct');
+      else if (i === chosen && chosen !== q.correct) b.classList.add('wrong');
+    });
+
+    const fb = document.getElementById('quiz-fb');
+    if (chosen === q.correct) {
+      score++;
+      document.getElementById('quiz-score').textContent = score;
+      fb.textContent = '✅ ' + q.fun;
+      fb.style.color = '#388e3c';
+    } else {
+      fb.textContent = '❌ Not quite... but I still love you 💕';
+      fb.style.color = '#c62828';
+    }
+
+    document.getElementById('quiz-next').disabled = false;
+  }
+
+  document.getElementById('quiz-next').addEventListener('click', () => {
+    qIndex++;
+    if (qIndex < QUIZ.length) {
+      renderQuestion();
+    } else {
+      showResult();
+    }
+  });
+
+  function showResult() {
+    document.getElementById('quiz-body').style.display   = 'none';
+    document.getElementById('quiz-result').style.display = 'block';
+    document.getElementById('quiz-prog').style.width     = '100%';
+
+    const pct = score / QUIZ.length;
+    let emoji, title, sub;
+
+    if (pct === 1) {
+      emoji = '🏆'; title = 'PERFECT SCORE!!';
+      sub   = `${score}/${QUIZ.length} — You know everything about me and I'm obsessed with you. You're literally my favourite person on this planet. 💖`;
+    } else if (pct >= 0.75) {
+      emoji = '💕'; title = 'You Know Me So Well!';
+      sub   = `${score}/${QUIZ.length} — Honestly? Pretty impressive. You pay attention and it makes my heart so full. 🥹`;
+    } else if (pct >= 0.5) {
+      emoji = '😊'; title = 'Getting There Babe!';
+      sub   = `${score}/${QUIZ.length} — We still have more memories to make! You'll get a perfect score eventually 💗`;
+    } else {
+      emoji = '😂'; title = 'We Need More Dates!';
+      sub   = `${score}/${QUIZ.length} — Low score but maximum love. I'll quiz you again after our next date night 💕`;
+    }
+
+    document.getElementById('quiz-res-emoji').textContent = emoji;
+    document.getElementById('quiz-res-title').textContent = title;
+    document.getElementById('quiz-res-sub').textContent   = sub;
+  }
+
+  startQuiz();
+</script>
+</body>
+</html>
